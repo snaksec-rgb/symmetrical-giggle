@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5th Passenger (2017) Full Movie Hindi-English</title>
+  <meta charset="UTF-8">
+  <title>5th Passenger Links</title>
+  <style>
+    .link-container { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+    .f-links { text-decoration: none; padding: 8px 15px; background: #007bff; color: #fff; border-radius: 5px; display: inline-block; }
+    .f-links:hover { background: #0056b3; }
+  </style>
 </head>
 <body>
 
-    <div class="movie-heading">
-        <h3>Download link</h3>
-    </div>
-
-    <div class="download-links">
-
-    <div class="link-container">
+<div class="link-container">
     <h4>5th Passenger (2018) 480p</h4>
-    <h2>[sgt id='XFVGCQ==']</h2> <!-- encoded ID -->
+    <h2 data-shortcode="sgt" data-id="q+F2bXh9">Loading...</h2>
 </div>
 
 <div class="link-container">
     <h4>5th Passenger (2018) 720p</h4>
-    <h2>[gdf id='XFVGCQ==']</h2> <!-- encoded ID -->
+    <h2 data-shortcode="gdf" data-id="w9X4dA3k">Loading...</h2>
 </div>
 
+<script>
+  // This script runs in the browser and calls your Worker API
+  document.querySelectorAll('h2[data-shortcode]').forEach(async h2 => {
+    const shortcode = h2.getAttribute('data-shortcode');
+    const id = h2.getAttribute('data-id');
 
+    try {
+      const res = await fetch(`https://plain-king-c7af.marfaat2004.workers.dev/?shortcode=${shortcode}&id=${encodeURIComponent(id)}`);
+      const data = await res.json();
 
-    </div>
-
-    <script src="https://plain-king-c7af.marfaat2004.workers.dev"></script>
+      if(data.url){
+        h2.innerHTML = `<a href="${data.url}" class="f-links" target="_blank">${shortcode.toUpperCase()}</a>`;
+      } else {
+        h2.textContent = "Link error";
+      }
+    } catch (err) {
+      h2.textContent = "Link error";
+    }
+  });
+</script>
 
 </body>
 </html>
