@@ -22,24 +22,25 @@
 </div>
 
 <script>
-  // Call Worker API to decode and display links
-  document.querySelectorAll('h2[data-shortcode]').forEach(async h2 => {
-    const shortcode = h2.getAttribute('data-shortcode');
-    const id = h2.getAttribute('data-id');
+document.querySelectorAll('h2[data-shortcode]').forEach(async h2 => {
+  const shortcode = h2.getAttribute('data-shortcode');
+  const id = h2.getAttribute('data-id');
 
-    try {
-      const res = await fetch(`https://plain-king-c7af.marfaat2004.workers.dev/?shortcode=${shortcode}&id=${encodeURIComponent(id)}`);
-      const data = await res.json();
+  try {
+    const res = await fetch(`https://plain-king-c7af.marfaat2004.workers.dev/?shortcode=${shortcode}&id=${encodeURIComponent(id)}`);
+    const data = await res.json();
 
-      if(data.url){
-        h2.innerHTML = `<a href="${data.url}" class="f-links" target="_blank">${shortcode.toUpperCase()}</a>`;
-      } else {
-        h2.textContent = "Link error";
-      }
-    } catch (err) {
+    if(data.url && typeof data.url === 'string') {
+      // Render clickable link
+      h2.innerHTML = `<a href="${data.url}" class="f-links" target="_blank">${shortcode.toUpperCase()}</a>`;
+    } else {
       h2.textContent = "Link error";
     }
-  });
+  } catch (err) {
+    h2.textContent = "Link error";
+    console.error(err);
+  }
+});
 </script>
 
 </body>
