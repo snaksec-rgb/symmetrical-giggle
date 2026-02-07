@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>5th Passenger Download Links</title>
+  <title>5th Passenger Downloads</title>
   <style>
     .link-container { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
     .f-links { text-decoration: none; padding: 8px 15px; background: #007bff; color: #fff; border-radius: 5px; display: inline-block; }
@@ -15,36 +15,13 @@
 
 <div class="link-container">
     <h4>480p WEBRip 300MB</h4>
-    <h2 data-shortcode="sgt" data-id="XFVGCQ==">Loading...</h2>
+    <a href="https://plain-king-c7af.marfaat2004.workers.dev/file/HQIDCxUOGA==" class="f-links" target="_blank">sgt Me</a>
 </div>
 
 <div class="link-container">
     <h4>720p WEBRip 750MB</h4>
-    <h2 data-shortcode="gdf" data-id="XFVGCA==">Loading...</h2>
+    <a href="https://plain-king-c7af.marfaat2004.workers.dev/file/CQERCwENCg==" class="f-links" target="_blank">gdf</a>
 </div>
-
-<script>
-  const WORKER_URL = "https://plain-king-c7af.marfaat2004.workers.dev/";
-
-  document.querySelectorAll('h2[data-shortcode]').forEach(async h2 => {
-    const shortcode = h2.getAttribute('data-shortcode');
-    const id = h2.getAttribute('data-id');
-
-    try {
-      const res = await fetch(`${WORKER_URL}?shortcode=${shortcode}&id=${encodeURIComponent(id)}`);
-      const data = await res.json();
-
-      if(data.url && typeof data.url === 'string') {
-        h2.innerHTML = `<a href="${data.url}" class="f-links" target="_blank">${shortcode.toUpperCase()}</a>`;
-      } else {
-        h2.textContent = "Link error";
-      }
-    } catch (err) {
-      h2.textContent = "Link error";
-      console.error(err);
-    }
-  });
-</script>
 
 </body>
 </html>
